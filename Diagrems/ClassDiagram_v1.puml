@@ -9,6 +9,10 @@ class Menu {
 + displayMenu()
 }
 
+class Text {
++ displayText()
+}
+
 class Login {
 - String name
 + registerUser()
@@ -47,12 +51,22 @@ class GUI1
 class GUI2
 class GUI3
 
-abstract class Character
+abstract class Character {
+- static Image image
++ createCharacter()
++ displayCharacter()
+}
+
 class Character1
 class Character2
 class Character3
 
-abstract class Prop
+abstract class Prop {
+- static Image image
++ createProp()
++ displayProp()
+}
+
 class Prop1
 class Prop2
 class Prop3
