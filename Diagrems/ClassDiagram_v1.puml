@@ -1,0 +1,93 @@
+@startuml
+!pragma layout smetana
+
+class Main {
++ startMenu()
+}
+
+class Menu {
++ displayMenu()
+}
+
+class Login {
+- String name
++ registerUser()
+}
+
+abstract class Game {
+- int w
+- int a
+- int s
+- int d
+- int score
++ startGame()
++ restartGame()
++ returnToMenu()
++ confirmDecision()
++ pressedKeys()
+}
+
+class Game1
+class Game2
+class Game3
+
+abstract class Application {
+}
+
+abstract class GUI {
+- Game game
+- Pane layout
+- Scene scene
++ start()
++ createRectangle()
++ createButton()
+}
+
+class GUI1
+class GUI2
+class GUI3
+
+abstract class Character
+class Character1
+class Character2
+class Character3
+
+abstract class Prop
+class Prop1
+class Prop2
+class Prop3
+
+class UserInput {
++ start()
++ actionAndDisplay()
+}
+
+Login <- Main
+Menu <- Login
+Menu --> Game
+Application --|> GUI
+Application --|> UserInput
+GUI --|> GUI1
+GUI --|> GUI2
+GUI --|> GUI3
+Prop1 <|-- Prop
+Prop2 <|-- Prop
+Prop3 <|-- Prop
+Character1 <|-- Character
+Character2 <|-- Character
+Character3 <|-- Character
+Game --|> Game1
+Game1 --> GUI1
+Game1 --> Character1
+Game1 --> Prop1
+Game --|> Game2
+Game2 --> GUI2
+Game2 --> Character2
+Game2 --> Prop2
+Game --|> Game3
+Game3 --> GUI3
+Game3 --> Character3
+Game3 --> Prop3
+
+
+@enduml

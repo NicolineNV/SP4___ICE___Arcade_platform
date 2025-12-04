@@ -1,0 +1,29 @@
+@startuml
+!pragma layout smetana
+
+object Game
+object Menu
+object Characters
+object Platform
+object Props
+object Snake
+object FlappyBird
+object DinoGame
+
+Game *-- Snake
+Game *-- FlappyBird
+Game *-- DinoGame
+
+Menu *-- Game
+
+Snake --- Props
+FlappyBird --- Props
+DinoGame --- Props
+
+Snake --- Characters
+FlappyBird --- Characters
+DinoGame --- Characters
+
+
+
+@enduml
