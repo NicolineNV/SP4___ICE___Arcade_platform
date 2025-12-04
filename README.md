@@ -1,0 +1,18 @@
+Funktionelle Krav - Arcade Spil Platform
+1. Introduktion til Platformen
+Denne arcade spil platform er designet som et samlet sted, hvor brugere kan spille forskellige klassiske og nye arcade-spil. Idéen er at alt skal være samlet ét sted, så man nemt kan hoppe fra ét spil til et andet, når man har lyst til forandring. Platformen er bygget så den kan vokse over tid - der kan tilføjes flere spil senere, så udvalget hele tiden kan blive større og mere varieret. Det vigtigste er, at det skal være nemt og intuitivt at bruge, uanset om man er erfaren gamer eller helt ny.
+2. Hovedmenuen:
+Når du åbner platformen, mødes du af hovedmenuen. Dette er det første, du ser, og det er her du finder alle de tilgængelige spil. Menuen viser hvert spil tydeligt med en titel og et billede, så du kan se, hvad det handler om.
+For at vælge et spil skal du bare klikke på det spil, du vil prøve. Når du klikker, reagerer platformen med det samme – hvor efter spillet indlæses hurtigt, og du er klar til at spille.
+Platformen starter med mindst to til tre spil. Alle spil er lige nemme at vælge og åbne, så oplevelsen føles den samme uanset hvilket spil du vil prøve.
+3. Når Du Spiller
+Når spillet klikkes på og starter op, bliver du mødt af en menu, som spørger om du vil starte spillet, eller gå direkte tilbage til menuen som du kom fra.
+Hvis du vælger at starte spillet, begynder det at kører, hvor du så kan spille så længe du har lyst. Der er ingen tidsbegrænsninger, og du bestemmer selv hvornår du vil stoppe - spillet fortsætter indtil du taber, vælger at starte forfra, eller går tilbage til menuen.
+Hvert spil styres på sin egen måde, tilpasset spillets type. Du kan altid se hvordan du skal styre spillet - der er en beskrivelse et sted på skærmen, så du ikke behøver at gætte. 
+4. Restart - Prøv Igen!
+Når du spiller et spil og måske taber eller bare vil starte forfra, findes der en "Restart" knap. Denne knap er let at finde på skærmen, og viser sig kun når du ikke er i gang med spille. Når du trykker på restart, nulstilles alt i spillet - din score går tilbage til 0, spillet starter fra begyndelsen, og det er som om du aldrig har spillet før.
+5. Tilbage til Menuen
+Hvis du er færdig med et spil og vil prøve noget andet, eller bare vil tage en pause, findes der en "Tilbage til Menu" knap i hvert spil. Denne knap er synlig mens du spiller, så du altid kan finde den, men den forstyrrer ikke dit spil eller sidder et sted hvor du kommer til at trykke på den ved et uheld.
+Når du klikker på denne knap, kommer du med det samme tilbage til hovedmenuen. Din fremgang i spillet bliver ikke gemt - det er som at lukke spillet ned. Men det er helt bevidst, for så kan du starte friskt når du vælger spillet næste gang. Du kan skifte mellem spil så mange gange du vil. Platformen håndterer det uden problemer.
+
+<img width="482" height="649" alt="image" src="https://github.com/user-attachments/assets/44ee21e1-aa34-4b54-87cc-87a51582e634" />
