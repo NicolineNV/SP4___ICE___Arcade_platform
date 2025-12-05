@@ -1,4 +1,6 @@
 package Arcade.DinoGame;
 
-public class CharacterDinoGame {
+import Arcade.Character;
+
+public class CharacterDinoGame extends Character {
 }

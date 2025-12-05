@@ -1,4 +1,6 @@
 package Arcade.FlappyBird;
 
-public class PropFlappyBird {
+import Arcade.Prop;
+
+public class PropFlappyBird extends Prop {
 }

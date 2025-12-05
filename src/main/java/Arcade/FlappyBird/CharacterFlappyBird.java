@@ -1,4 +1,6 @@
 package Arcade.FlappyBird;
 
-public class CharacterFlappyBird {
+import Arcade.Character;
+
+public class CharacterFlappyBird extends Character {
 }

@@ -1,4 +1,6 @@
 package Arcade.Snake;
 
-public class GUISnake {
+import Arcade.GUI;
+
+public class GUISnake extends GUI {
 }

@@ -1,4 +1,6 @@
 package Arcade.Snake;
 
-public class PropSnake {
+import Arcade.Prop;
+
+public class PropSnake extends Prop {
 }

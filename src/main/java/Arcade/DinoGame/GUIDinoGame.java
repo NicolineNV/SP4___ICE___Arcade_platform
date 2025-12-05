@@ -1,4 +1,6 @@
 package Arcade.DinoGame;
 
-public class GUIDinoGame {
+import Arcade.GUI;
+
+public class GUIDinoGame extends GUI {
 }

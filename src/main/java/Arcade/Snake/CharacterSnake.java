@@ -1,4 +1,6 @@
 package Arcade.Snake;
 
-public class CharacterSnake {
+import Arcade.Character;
+
+public class CharacterSnake extends Character {
 }

@@ -1,4 +1,6 @@
 package Arcade.DinoGame;
 
-public class PropDinoGame {
+import Arcade.Prop;
+
+public class PropDinoGame extends Prop {
 }

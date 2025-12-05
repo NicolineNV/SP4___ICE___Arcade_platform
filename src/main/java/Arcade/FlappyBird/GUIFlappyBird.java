@@ -1,4 +1,6 @@
 package Arcade.FlappyBird;
 
-public class GUIFlappyBird {
+import Arcade.GUI;
+
+public class GUIFlappyBird extends GUI {
 }
