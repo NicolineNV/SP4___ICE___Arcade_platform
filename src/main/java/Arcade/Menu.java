@@ -1,6 +1,6 @@
 package Arcade;
 
-public class Menu extends GUI{
+public class Menu{
 
     public void startMenu(){
 

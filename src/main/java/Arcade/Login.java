@@ -1,6 +1,6 @@
 package Arcade;
 
-public class Login extends GUI{
+public class Login{
     private String name;
 
     public void registerUser(){

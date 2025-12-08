@@ -1,0 +1,23 @@
+@startuml
+!pragma layout smetana
+
+class Main{}
+class MainJavaFX{}
+class Motion{}
+class GUI{}
+class Snake{}
+class FlappyBird{}
+class Dino{}
+interface Interface{}
+
+Main --> MainJavaFX
+MainJavaFX --> GUI
+MainJavaFX --> Motion
+GUI --|> Snake
+GUI --|> FlappyBird
+GUI --|> Dino
+Interface ..> Snake
+Interface ..> FlappyBird
+Interface ..> Dino
+
+@enduml
