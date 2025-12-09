@@ -26,7 +26,6 @@ public class GUI {
         layout.getChildren().add(rect);
     }
 
-
     public void createButton(){
     }
 
