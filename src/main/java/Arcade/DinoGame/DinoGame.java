@@ -13,6 +13,9 @@ public class DinoGame extends GUI {
 
     public Scene createGame (){
 
+        Scene scene = null;
+
+        return scene;
     }
 
 
