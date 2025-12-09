@@ -15,7 +15,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +24,27 @@ public class Snake extends GUI {
 
     private static Image slimeGREEN = null;
     private static Image slimeRED = null;
-    private static Image slimeBLUE = null;private static int speed = 5; // Sets start speed of the snake
-    private static Image slimeYELLOW = null;private static Label scoreLabel;
-    private static Image bobTheSnake = null;private static boolean gameOver = false;
-    private static Image bobTheSnakeBody = null;private static List <Corner> snake = new ArrayList<>();
-    private static Image mainMap = null;private static int width = 20;
+    private static Image slimeBLUE = null;
+    private static Image slimeYELLOW = null;
+    private static Image bobTheSnake = null;
+    private static Image bobTheSnakeBody = null;
+    private static Image mainMap = null;
 
+    private static List <Corner> snake = new ArrayList<>();
+
+    static Label scoreLabel;
+
+    private static int speed = 5;
     private static int relations = 25; // How many pixels each object is
+    private static int width = 20;
     private static int height = 20;
     private static Dir direction = Dir.left; // The direction of the snake - starts going left
     private static int foodX = 0;
     private static int foodY = 0;
     private static Random random = new Random();
     private static int foodColor = 0; // Set foodColor to black - it needs to be random
+
+    private static boolean gameOver = false;
 
 
     //Pane layout;
@@ -67,15 +74,14 @@ public class Snake extends GUI {
 
             scoreLabel = new Label("Score: 0");
             scoreLabel.getStyleClass().add("score-label");
-            scoreLabel.setFont(new Font(30));
-            scoreLabel.setTextFill(Color.CORAL);
+
 
             Canvas c = new Canvas(500, 500);
 
             GraphicsContext gc = c.getGraphicsContext2D();
 
             Button restartBtn = new Button("RESTART");
-            restartBtn.getStyleClass().add("button");
+            restartBtn.getStyleClass().add("game-button");
             restartBtn.setOnAction(e -> {
                 gameOver = false;
                 speed = 5;
@@ -89,7 +95,7 @@ public class Snake extends GUI {
 
             // Instructions
             Label instructionsLabel = new Label("Use W/A/S/D to control");
-            instructionsLabel.getStyleClass().add("label");
+            instructionsLabel.getStyleClass().add("info-panel");
 
             // Adds all to the VBOX
             root.getChildren().addAll(titleLabel, scoreLabel, c, restartBtn, instructionsLabel);
@@ -120,6 +126,13 @@ public class Snake extends GUI {
             }.start();
 
             Scene scene = new Scene(root, width * relations + 50, height * relations + 280);
+
+            // Activates CSS file
+            try {
+                scene.getStylesheets().add(getClass().getResource("/application2.0.css").toExternalForm());
+            } catch (Exception e) {
+                System.out.println("CSS file not found - runs without styling");
+            }
 
             //Control
             scene.addEventFilter(KeyEvent.KEY_PRESSED, key->{
@@ -155,14 +168,6 @@ public class Snake extends GUI {
             snake.add(new Corner(width/2, height/2));
 
             newFood();
-
-
-            // Activates CSS file
-            try {
-                scene.getStylesheets().add(getClass().getResource("/application2.0.css").toExternalForm());
-            } catch (Exception e) {
-                System.out.println("CSS file not found - runs without styling");
-            }
 
             return scene;
 
@@ -276,24 +281,24 @@ public class Snake extends GUI {
         // Random foodColor
         Color cc = Color.WHITE;
 
-        double billedeStorrelse = relations * 2;
-        double offsetX = (relations - billedeStorrelse) / 2;
-        double offsetY = (relations - billedeStorrelse) / 2;
+        double photoSize = relations * 2;
+        double offsetX = (relations - photoSize) / 2;
+        double offsetY = (relations - photoSize) / 2;
 
-        Image aktuelSlime = null;
+        Image actuelSlime = null;
         switch (foodColor) {
-            case 0: aktuelSlime = slimeGREEN; break;
-            case 1: aktuelSlime = slimeRED; break;
-            case 2: aktuelSlime = slimeBLUE; break;
-            case 3: aktuelSlime = slimeYELLOW; break;
+            case 0: actuelSlime = slimeGREEN; break;
+            case 1: actuelSlime = slimeRED; break;
+            case 2: actuelSlime = slimeBLUE; break;
+            case 3: actuelSlime = slimeYELLOW; break;
         }
 
-        if (aktuelSlime != null) {
-            gc.drawImage(aktuelSlime,
+        if (actuelSlime != null) {
+            gc.drawImage(actuelSlime,
                     foodX * relations + offsetX,
                     foodY * relations + offsetY,
-                    billedeStorrelse,
-                    billedeStorrelse);
+                    photoSize,
+                    photoSize);
         }
         ////////////////////////////////////////////////////////////////////
 
