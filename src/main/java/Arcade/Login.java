@@ -27,6 +27,13 @@ public class Login extends Application{
         Scene scene = new Scene(layout, 500, 300);
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(welcomelabel, nameField, loginButton, responseLabel);
+
+        try {
+            scene.getStylesheets().add(getClass().getResource("/application2.0.css").toExternalForm());
+        } catch (Exception e) {
+            System.out.println("CSS file not found - runs without styling");
+        }
+
         stage.setTitle("Login)");
         stage.setScene(scene);
         stage.show();

@@ -159,7 +159,7 @@ public class Snake extends GUI {
 
             // Activates CSS file
             try {
-                scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("/application2.0.css").toExternalForm());
             } catch (Exception e) {
                 System.out.println("CSS file not found - runs without styling");
             }

@@ -16,9 +16,9 @@ public class GUI {
         this.layout = layout;
     }
 
-    public void rectangle(String style, double X, double Y, double Width, double Height){
+    public void rectangle(Color color, double X, double Y, double Width, double Height){
         Rectangle rect = new Rectangle();
-        rect.getStyleClass().add(style);
+        rect.setFill(color);
         rect.setX(X);
         rect.setY(Y);
         rect.setWidth(Width);

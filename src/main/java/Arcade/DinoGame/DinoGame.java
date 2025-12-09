@@ -1,13 +1,14 @@
 package Arcade.DinoGame;
 
+import Arcade.GUI;
 import Arcade.GUIInterface;
-import Arcade.Game;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 
-public class DinoGame extends Game implements GUIInterface {
+public class DinoGame extends GUI {
 
-    @Override
-    public void startGame() {
-
+    public DinoGame(Pane layout) {
+        super(layout);
     }
+
+
 }

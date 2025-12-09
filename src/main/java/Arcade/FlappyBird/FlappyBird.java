@@ -1,11 +1,13 @@
 package Arcade.FlappyBird;
 
+import Arcade.GUI;
 import Arcade.GUIInterface;
-import Arcade.Game;
+import javafx.scene.layout.Pane;
 
-public class FlappyBird extends Game implements GUIInterface {
+public class FlappyBird extends GUI {
 
-    public void startGame(){
-
+    public FlappyBird(Pane layout) {
+        super(layout);
     }
+
 }

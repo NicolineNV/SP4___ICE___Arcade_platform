@@ -1,6 +1,6 @@
 package Arcade;
 
-public class Menu{
+public class Menu {
 
     public void startMenu(){
 
