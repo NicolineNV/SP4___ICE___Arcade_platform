@@ -23,7 +23,7 @@ public class Login extends Application{
         loginButton.setOnAction( e -> handleLogin(nameField, responseLabel));
         nameField.setOnAction(e -> handleLogin(nameField, responseLabel));
 
-        VBox layout = new VBox(10);
+        VBox layout = new VBox(30);
         Scene scene = new Scene(layout, 500, 300);
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(welcomelabel, nameField, loginButton, responseLabel);
@@ -43,6 +43,10 @@ public class Login extends Application{
         this.name = nameField.getText();
         if (name.isEmpty()) {
             responseLabel.setText("Please enter your name");
+        } else if (name.equalsIgnoreCase("xæa-12")){
+            responseLabel.setText("Ah yes... Elon Musk's son, my salutations.");
+        } else if (name.matches(".*\\d.*")) {
+            responseLabel.setText("Does your name contain a number......? Be serious");
         } else {
             responseLabel.setText("Welcome " + name);
         }
