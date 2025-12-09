@@ -11,6 +11,10 @@ public class MainJavaFX extends Application {
 
     public void start(Stage stage){
 
+        int x = 100;
+        int y = 100;
+
+
         Pane layout = new Pane();
         GUI gui = new GUI(layout);
         Snake snake = new Snake(layout);
@@ -23,7 +27,9 @@ public class MainJavaFX extends Application {
             System.out.println("CSS file not found - runs without styling");
         }
 
-        Button snakeBtn = new Button("SNAKE");
+        Button snakeBtn = new Button("✨ BOB THE SNAKE! ✨");
+        snakeBtn.setLayoutX(x);
+        snakeBtn.setLayoutY(y);
         snakeBtn.getStyleClass().add("snake-button");
         layout.getChildren().add(snakeBtn);
 
@@ -33,6 +39,14 @@ public class MainJavaFX extends Application {
                 stage.setScene(gameScene);
             }
         });
+
+
+        Button dinoBtn = new Button("");
+        dinoBtn.setLayoutX(x+275);
+        dinoBtn.setLayoutY(y);
+        dinoBtn.getStyleClass().add("dino-button");
+        layout.getChildren().add(dinoBtn);
+
 
         stage.setScene(scene);
         stage.show();
