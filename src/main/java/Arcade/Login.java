@@ -29,7 +29,7 @@ public class Login extends Application{
         layout.getChildren().addAll(welcomelabel, nameField, loginButton, responseLabel);
 
         try {
-            scene.getStylesheets().add(getClass().getResource("/application2.0.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/applicationNEW.css").toExternalForm());
         } catch (Exception e) {
             System.out.println("CSS file not found - runs without styling");
         }

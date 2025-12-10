@@ -15,9 +15,10 @@ public class MainJavaFX extends Application {
         double width = 1200;
         double height = 800;
 
-        int x = 75;
+        int x = 150;
         int y = 150;
-        int space = 300;
+        int spaceX = 300;
+        int spaceY = 250;
 
 
         Pane layout = new Pane();
@@ -27,7 +28,7 @@ public class MainJavaFX extends Application {
 
         // Activates CSS file
         try {
-            scene.getStylesheets().add(getClass().getResource("/application2.0.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/applicationNEW.css").toExternalForm());
         } catch (Exception e) {
             System.out.println("CSS file not found - runs without styling");
         }
@@ -55,17 +56,24 @@ public class MainJavaFX extends Application {
 
 
         Button dinoBtn = new Button("✨ DAVID THE DINO! ✨");
-        dinoBtn.setLayoutX(x+space);
+        dinoBtn.setLayoutX(x+spaceX);
         dinoBtn.setLayoutY(y);
         dinoBtn.getStyleClass().add("dino-button");
         layout.getChildren().add(dinoBtn);
 
 
         Button birdBth = new Button("✨ BARNY THE BIRD! ✨");
-        birdBth.setLayoutX((x+space)+space);
+        birdBth.setLayoutX((x+spaceX)+spaceX);
         birdBth.setLayoutY(y);
         birdBth.getStyleClass().add("bird-button");
         layout.getChildren().add(birdBth);
+
+
+        Button astroidsBtn = new Button("✨ ASTROIDS GAME! ✨");
+        astroidsBtn.setLayoutX(x);
+        astroidsBtn.setLayoutY(y+spaceY);
+        astroidsBtn.getStyleClass().add("astroids-button");
+        layout.getChildren().add(astroidsBtn);
 
 
         stage.setScene(scene);

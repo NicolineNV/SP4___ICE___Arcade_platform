@@ -35,6 +35,7 @@ public class Snake extends GUI {
     static Label scoreLabel;
 
     private static int speed = 5;
+    private static int score = 0;
     private static int relations = 25; // How many pixels each object is
     private static int width = 20;
     private static int height = 20;
@@ -69,11 +70,13 @@ public class Snake extends GUI {
             root.setAlignment(Pos.CENTER);
             root.setSpacing(15);
 
-            Label titleLabel = new Label("✨ BOB THE SNAKE! ✨");
+            Label titleLabel = new Label("✨ SAM THE SNAKE! ✨");
             titleLabel.getStyleClass().add("title-label");
+            titleLabel.setStyle("-fx-font-size: 25px; -fx-text-fill: #00f5ff;");
 
             scoreLabel = new Label("Score: 0");
             scoreLabel.getStyleClass().add("score-label");
+            scoreLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #ffeb3b;");
 
 
             Canvas c = new Canvas(500, 500);
@@ -85,6 +88,7 @@ public class Snake extends GUI {
             restartBtn.setOnAction(e -> {
                 gameOver = false;
                 speed = 5;
+                score = 0;
                 snake.clear();
                 snake.add(new Corner(width/2, height/2));
                 snake.add(new Corner(width/2, height/2));
@@ -110,7 +114,6 @@ public class Snake extends GUI {
                 public void handle (long now){ // now = this exact moment in time in nanoseconds
                     if(lastTick == 0){
                         lastTick = now;
-                        tick(gc);
                         return;
                     }
 
@@ -129,7 +132,7 @@ public class Snake extends GUI {
 
             // Activates CSS file
             try {
-                scene.getStylesheets().add(getClass().getResource("/application2.0.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("/applicationNEW.css").toExternalForm());
             } catch (Exception e) {
                 System.out.println("CSS file not found - runs without styling");
             }
@@ -152,6 +155,7 @@ public class Snake extends GUI {
                 if (key.getCode() == KeyCode.R && gameOver){
                     gameOver = false;
                     speed = 5;
+                    score = 0;
                     snake.clear();
                     snake.add(new Corner(width/2, height/2));
                     snake.add(new Corner(width/2, height/2));
@@ -253,6 +257,8 @@ public class Snake extends GUI {
         // eat food
         if (foodX == snake.get(0).x && foodY == snake.get(0).y) {
             snake.add(new Corner(-1, -1));
+            speed ++;
+            score ++;
             newFood();
         }
 
@@ -275,7 +281,7 @@ public class Snake extends GUI {
 
         // Score
         if (scoreLabel != null){
-            scoreLabel.setText("Score: " + (speed - 5));
+            scoreLabel.setText("Score: " + score);
         }
 
         // Random foodColor
