@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -14,6 +15,7 @@ public class Login extends Application{
     private String name;
 
     public void start(Stage stage){
+
         Label welcomelabel = new Label("Welcome to the arcade! Please enter your name: ");
         TextField nameField = new TextField();
         nameField.setMaxWidth(200);
@@ -49,6 +51,11 @@ public class Login extends Application{
             responseLabel.setText("Does your name contain a number......? Be serious");
         } else {
             responseLabel.setText("Welcome " + name);
+            /*try {
+                stop();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }*/
         }
     }
 

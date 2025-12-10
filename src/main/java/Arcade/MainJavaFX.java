@@ -8,10 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import Arcade.Login;
 
 public class MainJavaFX extends Application {
 
     public void start(Stage stage){
+
+        Pane layout = new Pane();
+
 
         double width = 1200;
         double height = 800;
@@ -21,8 +25,6 @@ public class MainJavaFX extends Application {
         int spaceX = 300;
         int spaceY = 250;
 
-
-        Pane layout = new Pane();
         GUI gui = new GUI(layout);
         Snake snake = new Snake(layout);
         Scene scene = new Scene(layout,width,height);
