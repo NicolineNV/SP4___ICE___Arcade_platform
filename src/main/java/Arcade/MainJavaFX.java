@@ -1,5 +1,6 @@
 package Arcade;
 
+import Arcade.Asteroids.Asteroids;
 import Arcade.Snake.Snake;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -25,6 +26,7 @@ public class MainJavaFX extends Application {
         GUI gui = new GUI(layout);
         Snake snake = new Snake(layout);
         Scene scene = new Scene(layout,width,height);
+        Asteroids asteroids = new Asteroids(layout);
 
         // Activates CSS file
         try {
@@ -74,6 +76,13 @@ public class MainJavaFX extends Application {
         astroidsBtn.setLayoutY(y+spaceY);
         astroidsBtn.getStyleClass().add("astroids-button");
         layout.getChildren().add(astroidsBtn);
+
+        astroidsBtn.setOnAction(e -> {
+            Scene gameScene = asteroids.createGame();
+            if (gameScene != null){
+                stage.setScene(gameScene);
+            }
+        });
 
 
         stage.setScene(scene);

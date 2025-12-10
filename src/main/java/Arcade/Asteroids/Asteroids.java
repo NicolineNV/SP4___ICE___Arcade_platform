@@ -1,5 +1,6 @@
 package Arcade.Asteroids;
 
+import Arcade.GUI;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,12 +13,16 @@ import javafx.stage.Stage;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Asteroids extends Application {
+public class Asteroids extends GUI {
 
     public static int width = 600;
     public static int height = 400;
 
-    public void start(Stage stage) throws Exception {
+    public Asteroids(Pane layout) {
+        super(layout);
+    }
+
+    public Scene createGame () {
         Pane pane = new Pane();
         final Text[] text = {new Text(10, 20, "Points: 0")};
         final int[] points = {0};
@@ -40,9 +45,10 @@ public class Asteroids extends Application {
 
 
         Scene scene = new Scene(pane);
-        stage.setTitle("Asteroids");
-        stage.setScene(scene);
-        stage.show();
+
+        // stage.setTitle("Asteroids");
+        //stage.setScene(scene);
+        //stage.show();
 
         Map<KeyCode, Boolean> pressedKeys = new HashMap<>();
         scene.setOnKeyPressed(e -> {
@@ -124,11 +130,13 @@ public class Asteroids extends Application {
                 }
                 }
         }.start();
+
+        return scene;
     }
 
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         launch(args);
-    }
+    }*/
 
 }

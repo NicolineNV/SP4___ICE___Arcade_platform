@@ -2,7 +2,6 @@ package Arcade.DinoGame;
 
 import Arcade.GUI;
 import Arcade.GUIInterface;
-import javafx.*;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
