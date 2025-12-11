@@ -82,6 +82,7 @@ public class MainJavaFX extends Application {
             Scene gameScene = asteroids.createGame();
             if (gameScene != null){
                 stage.setScene(gameScene);
+                stage.centerOnScreen();
             }
         });
 
