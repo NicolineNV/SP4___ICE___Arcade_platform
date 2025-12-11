@@ -1,17 +1,11 @@
 package Arcade.Asteroids;
 
 import Arcade.GUI;
-import Arcade.MainJavaFX;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -24,20 +18,12 @@ public class Asteroids extends GUI {
     public static int width = 600;
     public static int height = 400;
 
-    private AnimationTimer gameLoop;
-
     public Asteroids(Pane layout) {
         super(layout);
     }
 
     public Scene createGame () {
-
         Pane pane = new Pane();
-
-        Canvas c = new Canvas(400, 600);
-        GraphicsContext gc = c.getGraphicsContext2D();
-
-
         final Text[] text = {new Text(10, 20, "Points: 0")};
         final int[] points = {0};
         pane.getChildren().add(text[0]);
@@ -58,7 +44,7 @@ public class Asteroids extends GUI {
         asteroids.forEach(asteroid -> pane.getChildren().add(asteroid.getCharacter()));
 
 
-        Scene scene = new Scene(pane, width + 100, height + 300);
+        Scene scene = new Scene(pane);
 
         // stage.setTitle("Asteroids");
         //stage.setScene(scene);
@@ -72,7 +58,7 @@ public class Asteroids extends GUI {
             pressedKeys.put(e.getCode(), Boolean.FALSE);
         });
 
-        gameLoop = new AnimationTimer(){
+        new AnimationTimer(){
 
             public void handle (long now){
                 if (pressedKeys.getOrDefault(KeyCode.LEFT, false)){
@@ -143,8 +129,7 @@ public class Asteroids extends GUI {
                     }
                 }
                 }
-        };
-        gameLoop.start();
+        }.start();
 
         return scene;
     }
@@ -154,20 +139,4 @@ public class Asteroids extends GUI {
         launch(args);
     }*/
 
-    public void backToMenu (Button menuBtn){
-
-        if (gameLoop != null) {
-            gameLoop.stop();
-        }
-
-        Stage currentStage = (Stage) menuBtn.getScene().getWindow();
-        MainJavaFX toMenu = new MainJavaFX();
-
-        try {
-            toMenu.start(currentStage);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 }
-
