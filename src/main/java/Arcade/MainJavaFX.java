@@ -16,7 +16,6 @@ public class MainJavaFX extends Application {
 
         Pane layout = new Pane();
 
-
         double width = 1200;
         double height = 800;
 

@@ -1,7 +1,9 @@
 package Arcade.Snake;
 import Arcade.Dir;
 import Arcade.GUI;
+import Arcade.MainJavaFX;
 import javafx.animation.AnimationTimer;
+import javafx.animation.PauseTransition;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -15,6 +17,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +50,9 @@ public class Snake extends GUI {
     private static int foodColor = 0; // Set foodColor to black - it needs to be random
 
     private static boolean gameOver = false;
+
+    private AnimationTimer gameLoop;
+
 
 
     //Pane layout;
@@ -97,15 +104,21 @@ public class Snake extends GUI {
                 newFood();
             });
 
+
+            Button menuBtn = new Button("Back to Menu");
+            menuBtn.getStyleClass().add("game-button");
+            menuBtn.setOnAction(event ->
+                    backToMenu(menuBtn));
+
             // Instructions
             Label instructionsLabel = new Label("Use W/A/S/D to control");
             instructionsLabel.getStyleClass().add("info-panel");
 
             // Adds all to the VBOX
-            root.getChildren().addAll(titleLabel, scoreLabel, c, restartBtn, instructionsLabel);
+            root.getChildren().addAll(titleLabel, scoreLabel, c, restartBtn, menuBtn, instructionsLabel);
 
             // This is our play loop
-            new AnimationTimer(){
+            gameLoop = new AnimationTimer(){
                 long lastTick = 0; // lastTick = the time for last update
 
                 // Handle method checks if there has been enough time since last update
@@ -122,11 +135,11 @@ public class Snake extends GUI {
                         lastTick = now;
                         tick(gc);
                     }
-
                     // If lastTick is greater than now = update lastTick!
                     // If not = skip the update
                 }
-            }.start();
+            };
+            gameLoop.start();
 
             Scene scene = new Scene(root, width * relations + 50, height * relations + 280);
 
@@ -173,9 +186,8 @@ public class Snake extends GUI {
 
             newFood();
 
+
             return scene;
-
-
 
         } catch (Exception e){
             e.printStackTrace();
@@ -324,5 +336,22 @@ public class Snake extends GUI {
             }
         }
     }
+
+    public void backToMenu (Button menuBtn){
+
+        if (gameLoop != null) {
+            gameLoop.stop();
+        }
+
+        Stage currentStage = (Stage) menuBtn.getScene().getWindow();
+        MainJavaFX toMenu = new MainJavaFX();
+
+        try {
+            toMenu.start(currentStage);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
+
 
