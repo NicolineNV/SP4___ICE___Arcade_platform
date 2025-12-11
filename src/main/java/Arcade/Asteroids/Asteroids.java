@@ -17,6 +17,8 @@ public class Asteroids extends GUI {
 
     public static int width = 600;
     public static int height = 400;
+    private long lastShotTime = 0;
+    private final long shootCD = 500;
 
     public Asteroids(Pane layout) {
         super(layout);
@@ -61,6 +63,7 @@ public class Asteroids extends GUI {
         new AnimationTimer(){
 
             public void handle (long now){
+                long currentTime = System.currentTimeMillis();
                 if (pressedKeys.getOrDefault(KeyCode.LEFT, false)){
                     ship.turnLeft();
                 }
@@ -73,8 +76,10 @@ public class Asteroids extends GUI {
                 if (pressedKeys.getOrDefault(KeyCode.DOWN, false)){
                     ship.slowingDown();
                 }
-                if (pressedKeys.getOrDefault(KeyCode.SPACE, false) && projectiles.size() < 3){
+                if (pressedKeys.getOrDefault(KeyCode.SPACE, false) && projectiles.size() < 3 && currentTime - lastShotTime >= shootCD){
+                    lastShotTime = currentTime;
                     Projectile projectile = new Projectile((int)ship.getCharacter().getTranslateX(), (int)ship.getCharacter().getTranslateY());
+                    projectile.getCharacter().setFill(Color.RED);
                     projectile.getCharacter().setRotate(ship.getCharacter().getRotate());
                     projectiles.add(projectile);
                     projectile.accelerate();
@@ -133,10 +138,5 @@ public class Asteroids extends GUI {
 
         return scene;
     }
-
-
-    /*public static void main(String[] args){
-        launch(args);
-    }*/
 
 }
