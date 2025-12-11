@@ -202,9 +202,12 @@
 /* Knap med baggrundsbillede - fuld størrelse */
 
 /* Knap med billede OG gradient overlay */
+
+/*rgba(0, 217, 255, 0.5)*/
+
 .astroids-button {
-    -fx-background-image: url("/SnakePictures/slimeRED.png");
-    -fx-background-color: rgba(0, 217, 255, 0.5);
+    -fx-background-image: url("/AstroidsPictures/AstroidsIcon2.png");
+    -fx-background-color: rgb(0, 0, 1);
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
@@ -219,7 +222,7 @@
     -fx-font-family: "Arial", sans-serif;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-padding: 90 10 90 10;
+    -fx-padding: 90 135 90 135;
 
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(0, 136, 255, 0.6), 15, 0.7, 0, 3);
@@ -227,19 +230,19 @@
 .astroids-button:hover {
     -fx-scale-x: 1.08;
     -fx-scale-y: 1.08;
-    -fx-border-color: rgb(81, 189, 106, 0.6);
-    -fx-effect: dropshadow(gaussian, rgba(0, 255, 0, 0.8), 20, 0.8, 0, 3);
+    -fx-border-color: rgb(1, 67, 188, 0.6);
+    -fx-effect: dropshadow(gaussian, rgba(0, 136, 255, 0.8), 20, 0.8, 0, 3);
 }
 .astroids-button:pressed {
-    -fx-background-color: linear-gradient(to bottom, #51bd6a 0%, #51946a 100%);
+    -fx-background-color: linear-gradient(to bottom, #0143a3 0%, #0143bc 100%);
     -fx-translate-y: 2;
-    -fx-effect: dropshadow(gaussian, rgba(0, 255, 0, 0.8), 20, 0.8, 0, 3);
+    -fx-effect: dropshadow(gaussian, rgba(0, 136, 255, 0.8), 20, 0.8, 0, 3);
 }
 
 /* Snake spil knap eksempel */
 .snake-button {
-    -fx-background-image: url("/SnakePictures/SnakeIcon2.0.png");
-    -fx-background-color: rgb(81, 189, 106);
+    -fx-background-image: url("/SnakePictures/snakeIconVersionWhatever.png");
+    -fx-background-color: rgb(62, 116, 1);
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
@@ -254,7 +257,7 @@
     -fx-font-family: "Arial", sans-serif;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-padding: 90 10 90 10;
+    -fx-padding: 90 135 90 135;
 
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(0, 255, 0, 0.5), 15, 0.7, 0, 3);

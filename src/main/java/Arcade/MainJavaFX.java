@@ -44,7 +44,7 @@ public class MainJavaFX extends Application {
         layout.getChildren().add(title);
 
 
-        Button snakeBtn = new Button("✨ SAM THE SNAKE! ✨");
+        Button snakeBtn = new Button("");
         snakeBtn.setLayoutX(x);
         snakeBtn.setLayoutY(y);
         snakeBtn.getStyleClass().add("snake-button");
@@ -72,7 +72,7 @@ public class MainJavaFX extends Application {
         layout.getChildren().add(birdBth);
 
 
-        Button astroidsBtn = new Button("✨ ASTROIDS GAME! ✨");
+        Button astroidsBtn = new Button("");
         astroidsBtn.setLayoutX(x);
         astroidsBtn.setLayoutY(y+spaceY);
         astroidsBtn.getStyleClass().add("astroids-button");
@@ -85,7 +85,6 @@ public class MainJavaFX extends Application {
                 stage.centerOnScreen();
             }
         });
-
 
         stage.setScene(scene);
         stage.show();
