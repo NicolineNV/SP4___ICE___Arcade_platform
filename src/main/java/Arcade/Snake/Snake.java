@@ -54,6 +54,7 @@ public class Snake extends GUI {
 
     private AnimationTimer gameLoop;
 
+    private static boolean isGameStarted = false;
 
 
     //Pane layout;
@@ -86,6 +87,8 @@ public class Snake extends GUI {
             scoreLabel.getStyleClass().add("score-label");
             scoreLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #ffeb3b;");
 
+            Label startLabel = new Label("Press ENTER to start");
+            startLabel.setStyle("-fx-font-size: 22px; -fx-text-fill: #00ff88; -fx-font-weight: bold;");
 
             Canvas c = new Canvas(500, 500);
 
@@ -95,6 +98,7 @@ public class Snake extends GUI {
             restartBtn.getStyleClass().add("game-button");
             restartBtn.setOnAction(e -> {
                 gameOver = false;
+                isGameStarted = false;
                 speed = 5;
                 score = 0;
                 snake.clear();
@@ -102,45 +106,64 @@ public class Snake extends GUI {
                 snake.add(new Corner(width/2, height/2));
                 snake.add(new Corner(width/2, height/2));
                 direction = Dir.left;
+                startLabel.setVisible(false);
                 newFood();
             });
 
 
             Button menuBtn = new Button("Back to Menu");
             menuBtn.getStyleClass().add("game-button");
-            menuBtn.setOnAction(event ->
-                    Menu.backToMenu(menuBtn, gameLoop));
+            menuBtn.setOnAction(event ->{
+                    Menu.backToMenu(menuBtn, gameLoop);
+            });
 
             // Instructions
             Label instructionsLabel = new Label("Use W/A/S/D to control");
             instructionsLabel.getStyleClass().add("info-panel");
 
             // Adds all to the VBOX
-            root.getChildren().addAll(titleLabel, scoreLabel, c, restartBtn, menuBtn, instructionsLabel);
+            root.getChildren().addAll(titleLabel, scoreLabel, startLabel, c, restartBtn, menuBtn, instructionsLabel);
 
-            // This is our play loop
-            gameLoop = new AnimationTimer(){
-                long lastTick = 0; // lastTick = the time for last update
+                // This is our play loop
+                gameLoop = new AnimationTimer() {
+                    long lastTick = 0; // lastTick = the time for last update
 
-                // Handle method checks if there has been enough time since last update
-                // Makes sure that the update time becomes shorter, if the speed increases -
-                // This makes the snake go faster!
-                public void handle (long now){ // now = this exact moment in time in nanoseconds
-                    if(lastTick == 0){
-                        lastTick = now;
-                        return;
+                    // Handle method checks if there has been enough time since last update
+                    // Makes sure that the update time becomes shorter, if the speed increases -
+                    // This makes the snake go faster!
+                    public void handle(long now) { // now = this exact moment in time in nanoseconds
+
+                        // Creates and show game - even though game is not startet
+                        if (!isGameStarted) {
+                            gc.setFill(Color.SEAGREEN);
+                            gc.fillRect(0, 0, width * relations, height * relations);
+
+                            if (mainMap != null) {
+                                gc.drawImage(mainMap, 0, 0, width * relations, height * relations);
+                            }
+
+                            gc.setFill(Color.WHITE);
+                            gc.setFont(new Font("Arial", 30));
+                            gc.fillText("Press ENTER to Start", 110, 250);
+                            return;
+                        }
+
+                        if (lastTick == 0) {
+                            lastTick = now;
+                            return;
+                        }
+
+                        // 1000000000 nanoseconds = 1 second
+                        if (now - lastTick > 1000000000 / speed) {
+                            lastTick = now;
+                            tick(gc);
+                        }
+                        // If lastTick is greater than now = update lastTick!
+                        // If not = skip the update
                     }
+                };
+                gameLoop.start();
 
-                    // 1000000000 nanoseconds = 1 second
-                    if (now - lastTick > 1000000000 / speed){
-                        lastTick = now;
-                        tick(gc);
-                    }
-                    // If lastTick is greater than now = update lastTick!
-                    // If not = skip the update
-                }
-            };
-            gameLoop.start();
 
             Scene scene = new Scene(root, width * relations + 50, height * relations + 280);
 
@@ -153,6 +176,22 @@ public class Snake extends GUI {
 
             //Control
             scene.addEventFilter(KeyEvent.KEY_PRESSED, key->{
+
+                // Starts the game by pressing ENTER
+                if (key.getCode() == KeyCode.ENTER && !isGameStarted){
+                    isGameStarted = true;
+                    startLabel.setVisible(false); // hides startlabel
+                    return;
+                }
+                if (key.getCode() == KeyCode.ESCAPE){
+                    isGameStarted = false;
+                    gameOver = false;
+                    Menu.backToMenu(menuBtn, gameLoop);
+                }
+
+                if (!isGameStarted) return;
+                // Makes sure the rest of the controls doesn't work if the game is not started
+
                 if (key.getCode() == KeyCode.W){
                     direction = Dir.up;
                 }
@@ -176,9 +215,6 @@ public class Snake extends GUI {
                     snake.add(new Corner(width/2, height/2));
                     direction = Dir.left;
                     newFood();
-                }
-                if (key.getCode() == KeyCode.ESCAPE){
-                    Menu.backToMenu(menuBtn, gameLoop);
                 }
             });
 
