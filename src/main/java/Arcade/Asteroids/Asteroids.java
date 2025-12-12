@@ -22,13 +22,14 @@ public class Asteroids extends GUI {
     AnimationTimer gameLoop;
     public static int width = 600;
     public static int height = 400;
+    private long lastShotTime = 0;
+    private final long shootCD = 500;
     Pane pane = new Pane();
     Text[] text = {new Text(10, 20, "Points: 0")};
     Ship ship = new Ship(width/2,height/2);
     final int[] points = {0};
     List<AsteroidRock> asteroids = new ArrayList<>();
     List<Projectile> projectiles = new ArrayList<>();
-    private boolean rPressed = false;
 
     public Asteroids(Pane layout) {
         super(layout);
@@ -100,6 +101,7 @@ public class Asteroids extends GUI {
         gameLoop = new AnimationTimer(){
 
             public void handle (long now){
+                long currentTime = System.currentTimeMillis();
                 if (pressedKeys.getOrDefault(KeyCode.A, false)){
                     ship.turnLeft();
                 }
@@ -112,9 +114,11 @@ public class Asteroids extends GUI {
                 if (pressedKeys.getOrDefault(KeyCode.S, false)){
                     ship.slowingDown();
                 }
-                if (pressedKeys.getOrDefault(KeyCode.SPACE, false) && projectiles.size() < 3){
+                if (pressedKeys.getOrDefault(KeyCode.SPACE, false) && projectiles.size() < 3 && currentTime - lastShotTime >= shootCD){
+                    lastShotTime = currentTime;
                     Projectile projectile = new Projectile((int)ship.getCharacter().getTranslateX(), (int)ship.getCharacter().getTranslateY());
                     projectile.getCharacter().setRotate(ship.getCharacter().getRotate());
+                    projectile.getCharacter().setFill(Color.RED);
                     projectiles.add(projectile);
                     projectile.accelerate();
                     // normalize() to 1 unit per frame
