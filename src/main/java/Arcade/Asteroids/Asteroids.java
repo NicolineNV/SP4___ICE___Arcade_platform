@@ -2,37 +2,45 @@ package Arcade.Asteroids;
 
 import Arcade.GUI;
 import javafx.animation.AnimationTimer;
-import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Asteroids extends GUI {
-
+    AnimationTimer gameLoop;
     public static int width = 600;
     public static int height = 400;
+    Pane pane = new Pane();
+    Text[] text = {new Text(10, 20, "Points: 0")};
+    Ship ship = new Ship(width/2,height/2);
+    final int[] points = {0};
+    List<AsteroidRock> asteroids = new ArrayList<>();
+    List<Projectile> projectiles = new ArrayList<>();
+    private boolean rPressed = false;
 
     public Asteroids(Pane layout) {
         super(layout);
     }
 
     public Scene createGame () {
-        Pane pane = new Pane();
-        final Text[] text = {new Text(10, 20, "Points: 0")};
-        final int[] points = {0};
+
+
         pane.getChildren().add(text[0]);
         pane.setPrefSize(width,height);
 
-        Ship ship = new Ship(width/2,height/2);
         ship.getCharacter().setFill(Color.RED);
-        List<AsteroidRock> asteroids = new ArrayList<>();
-        List<Projectile> projectiles = new ArrayList<>();
+
 
         for (int i=0; i<5; i++){
             Random random = new Random();
@@ -43,8 +51,34 @@ public class Asteroids extends GUI {
         pane.getChildren().add(ship.getCharacter());
         asteroids.forEach(asteroid -> pane.getChildren().add(asteroid.getCharacter()));
 
+        VBox root = new VBox(15);
+        root.setPadding(new Insets(10));
+        root.setAlignment(Pos.TOP_CENTER);
+        Text title = new Text("Asteroids");
+        title.setFill(Color.YELLOW);
+        title.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        StackPane paneWrapper = new StackPane(pane);
+        paneWrapper.setPadding((new Insets(0,10,0,10)));
+        pane.setMinSize(width, height);
+        pane.setPrefSize(width, height);
+        pane.setMaxSize(width, height);
+        pane.setStyle("-fx-background-color: white;");
+        VBox.setVgrow(pane, Priority.NEVER);
+        Button restart = new Button("Restart");
+        Button backToMenu = new Button("Back To Menu");
+        restart.setOnAction(e -> restart(pane));
+        backToMenu.setOnAction(e -> Menu.backToMenu(backToMenu, gameLoop));
+        root.getChildren().addAll(title,pane, restart, backToMenu);
+        Scene scene = new Scene(root);
+        pane.requestFocus();
+        pane.setOnMouseClicked(e -> pane.requestFocus());
+        try {
+            scene.getStylesheets().add(getClass().getResource("/applicationNEW.css").toExternalForm());
+        } catch (Exception e) {
+            System.out.println("CSS file not found - runs without styling");
+        }
 
-        Scene scene = new Scene(pane);
+        // Scene scene = new Scene(pane);
 
         // stage.setTitle("Asteroids");
         //stage.setScene(scene);
@@ -56,21 +90,25 @@ public class Asteroids extends GUI {
         });
         scene.setOnKeyReleased(e -> {
             pressedKeys.put(e.getCode(), Boolean.FALSE);
+            if (e.getCode() == KeyCode.R) {
+                restart(pane);
+            }
         });
 
-        new AnimationTimer(){
+
+        gameLoop = new AnimationTimer(){
 
             public void handle (long now){
-                if (pressedKeys.getOrDefault(KeyCode.LEFT, false)){
+                if (pressedKeys.getOrDefault(KeyCode.A, false)){
                     ship.turnLeft();
                 }
-                if (pressedKeys.getOrDefault(KeyCode.RIGHT, false)){
+                if (pressedKeys.getOrDefault(KeyCode.D, false)){
                     ship.turnRight();
                 }
-                if (pressedKeys.getOrDefault(KeyCode.UP, false)){
+                if (pressedKeys.getOrDefault(KeyCode.W, false)){
                     ship.accelerate();
                 }
-                if (pressedKeys.getOrDefault(KeyCode.DOWN, false)){
+                if (pressedKeys.getOrDefault(KeyCode.S, false)){
                     ship.slowingDown();
                 }
                 if (pressedKeys.getOrDefault(KeyCode.SPACE, false) && projectiles.size() < 3){
@@ -82,6 +120,9 @@ public class Asteroids extends GUI {
                     // multiply() to 3 units per frame
                     projectile.setMovement(projectile.getMovement().normalize().multiply(3));
                     pane.getChildren().add(projectile.getCharacter());
+                }
+                if (pressedKeys.getOrDefault(KeyCode.ESCAPE, false)){
+                    Menu.backToMenu(backToMenu, gameLoop);
                 }
                 ship.move();
                 // interesting method
@@ -129,14 +170,31 @@ public class Asteroids extends GUI {
                     }
                 }
                 }
-        }.start();
+        };gameLoop.start();
 
         return scene;
     }
 
 
-    /*public static void main(String[] args){
-        launch(args);
-    }*/
+    private void restart(Pane pane){
+        gameLoop.stop();
+        pane.getChildren().clear();
+        points[0] = 0;
+        text[0].setText("Points: 0");
+        ship = new Ship(width/2, height/2);
+        ship.getCharacter().setFill(Color.RED);
+        asteroids = new ArrayList<>();
+        projectiles = new ArrayList<>();
+        for (int i=0; i<5; i++){
+            Random random = new Random();
+            AsteroidRock asteroid = new AsteroidRock(random.nextInt(100), random.nextInt(100));
+            asteroids.add(asteroid);
+        }
+        pane.getChildren().add(text[0]);
+        pane.getChildren().add(ship.getCharacter());
+        asteroids.forEach(e -> pane.getChildren().add(e.getCharacter()));
+        gameLoop.start();
+        pane.requestFocus();
+    }
 
 }
