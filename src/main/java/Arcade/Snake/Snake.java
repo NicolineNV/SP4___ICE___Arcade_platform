@@ -1,6 +1,7 @@
 package Arcade.Snake;
 import Arcade.Dir;
 import Arcade.GUI;
+import Arcade.Menu;
 import Arcade.MainJavaFX;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
@@ -108,7 +109,7 @@ public class Snake extends GUI {
             Button menuBtn = new Button("Back to Menu");
             menuBtn.getStyleClass().add("game-button");
             menuBtn.setOnAction(event ->
-                    backToMenu(menuBtn));
+                    Menu.backToMenu(menuBtn, gameLoop));
 
             // Instructions
             Label instructionsLabel = new Label("Use W/A/S/D to control");
@@ -175,6 +176,9 @@ public class Snake extends GUI {
                     snake.add(new Corner(width/2, height/2));
                     direction = Dir.left;
                     newFood();
+                }
+                if (key.getCode() == KeyCode.ESCAPE){
+                    Menu.backToMenu(menuBtn, gameLoop);
                 }
             });
 
@@ -337,21 +341,7 @@ public class Snake extends GUI {
         }
     }
 
-    public void backToMenu (Button menuBtn){
 
-        if (gameLoop != null) {
-            gameLoop.stop();
-        }
-
-        Stage currentStage = (Stage) menuBtn.getScene().getWindow();
-        MainJavaFX toMenu = new MainJavaFX();
-
-        try {
-            toMenu.start(currentStage);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 }
 
 
