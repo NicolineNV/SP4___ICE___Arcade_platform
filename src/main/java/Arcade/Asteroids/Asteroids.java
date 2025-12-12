@@ -1,5 +1,6 @@
 package Arcade.Asteroids;
 
+import Arcade.Menu;
 import Arcade.GUI;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
