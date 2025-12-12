@@ -1,6 +1,6 @@
 package Arcade.DinoGame;
 
-import Arcade.GUI;
+//import Arcade.GUI;
 import Arcade.GUIInterface;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 
-public class DinoGame extends GUI {
+public class DinoGame {
 
     Group group;
     Canvas gameCanvas;
@@ -29,9 +29,9 @@ public class DinoGame extends GUI {
 
 
 
-    public DinoGame(Pane layout) {
+    /*public DinoGame(Pane layout) {
         super(layout);
-    }
+    }*/
 
     public Scene createGame (){
 

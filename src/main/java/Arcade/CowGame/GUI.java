@@ -8,10 +8,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-public class Props {
+public class GUI {
 
     Pane layout;
-    Props(Pane layout){
+    GUI(Pane layout){
         this.layout = layout;
     }
 

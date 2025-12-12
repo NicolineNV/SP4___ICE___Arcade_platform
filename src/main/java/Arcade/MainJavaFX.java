@@ -2,14 +2,13 @@ package Arcade;
 
 import Arcade.Asteroids.Asteroids;
 import Arcade.Snake.Snake;
-import Arcade.CowGame.MainFX;
+import Arcade.CowGame.Cow;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import Arcade.Login;
 
 public class MainJavaFX extends Application {
 
@@ -25,11 +24,11 @@ public class MainJavaFX extends Application {
         int spaceX = 300;
         int spaceY = 250;
 
-        GUI gui = new GUI(layout);
-        Snake snake = new Snake(layout);
+        //GUI gui = new GUI(layout);
+        Snake snake = new Snake();
         Scene scene = new Scene(layout,width,height);
-        Asteroids asteroids = new Asteroids(layout);
-        MainFX cowGame = new MainFX(layout);
+        Asteroids asteroids = new Asteroids();
+        Cow cowGame = new Cow();
 
         // Activates CSS file
         try {
@@ -60,14 +59,14 @@ public class MainJavaFX extends Application {
         });
 
 
-        Button dinoBtn = new Button("✨ DAVID THE DINO! ✨");
-        dinoBtn.setLayoutX(x+spaceX);
-        dinoBtn.setLayoutY(y);
-        dinoBtn.getStyleClass().add("dino-button");
-        layout.getChildren().add(dinoBtn);
+        Button cowBtn = new Button("✨ DAVID THE DINO! ✨");
+        cowBtn.setLayoutX(x+spaceX);
+        cowBtn.setLayoutY(y);
+        cowBtn.getStyleClass().add("dino-button");
+        layout.getChildren().add(cowBtn);
 
-        dinoBtn.setOnAction(e -> {
-            Scene gameScene = cowGame.createGame();
+        cowBtn.setOnAction(e -> {
+            Scene gameScene = cowGame.createGame(stage);
             if (gameScene != null){
                 stage.setScene(gameScene);
             }

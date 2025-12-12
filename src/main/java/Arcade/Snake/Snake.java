@@ -1,6 +1,6 @@
 package Arcade.Snake;
 import Arcade.Dir;
-import Arcade.GUI;
+//import Arcade.GUI;
 import Arcade.Menu;
 import Arcade.MainJavaFX;
 import javafx.animation.AnimationTimer;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Snake extends GUI {
+public class Snake {
 
     private static Image slimeGREEN = null;
     private static Image slimeRED = null;
@@ -57,10 +57,10 @@ public class Snake extends GUI {
     private static boolean isGameStarted = false;
 
 
-    //Pane layout;
+    /*//Pane layout;
     public Snake(Pane layout){
         super(layout);
-    }
+    }*/
 
     public Scene createGame (){
 

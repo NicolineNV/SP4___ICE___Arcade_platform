@@ -1,25 +1,21 @@
 package Arcade.CowGame;
 
-import Arcade.GUI;
+//import Arcade.GUI;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class MainFX extends GUI {
+public class Cow extends Application {
 
-    public MainFX(Pane layout) {
-        super(layout);
+
+    public void start(Stage stage){
+        createGame(stage);
     }
 
-    public Scene createGame() {
-        Stage stage = new Stage();
-        display(stage);
-        return stage.getScene();
-    }
 
-    public void display(Stage stage) {
+    public Scene createGame(Stage stage) {
         Pane layout = new Pane();
         Movements motion = new Movements();
         GameInterface game = new CowGame(layout, motion);
@@ -34,6 +30,7 @@ public class MainFX extends GUI {
         //Display.
         stage.setScene(scene2);
         stage.show();
+        return scene2;
     }
 
 

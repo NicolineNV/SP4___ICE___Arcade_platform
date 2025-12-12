@@ -1,7 +1,7 @@
 package Arcade.Asteroids;
 
 import Arcade.Menu;
-import Arcade.GUI;
+//import Arcade.GUI;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +18,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import java.util.*;
 
-public class Asteroids extends GUI {
+public class Asteroids {
     AnimationTimer gameLoop;
     public static int width = 600;
     public static int height = 400;
@@ -31,9 +31,9 @@ public class Asteroids extends GUI {
     List<AsteroidRock> asteroids = new ArrayList<>();
     List<Projectile> projectiles = new ArrayList<>();
 
-    public Asteroids(Pane layout) {
+    /*public Asteroids(Pane layout) {
         super(layout);
-    }
+    }*/
 
     public Scene createGame () {
 

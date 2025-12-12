@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 
 import java.util.Random;
 
-public class CowGame extends Props implements GameInterface {
+public class CowGame extends GUI implements GameInterface {
 
     private boolean gameOver = false;
     public boolean isGameOver() {
