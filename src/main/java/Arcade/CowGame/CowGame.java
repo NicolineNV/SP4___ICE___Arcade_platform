@@ -22,6 +22,7 @@ public class CowGame extends GUI implements GameInterface {
     double gW;
     double gS;
     double gA;
+    double gD;
 
 
     public void runClickedW() {
@@ -42,8 +43,9 @@ public class CowGame extends GUI implements GameInterface {
 
     public void gravity() {
         gW = motion.gravityW("");
-        gS = motion.gravityW("");
-        gA = motion.gravityW("");
+        gS = motion.gravityS("");
+        gA = motion.gravityA("");
+        gD = motion.gravityD("");
     }
 
     public void runConstant() {
@@ -107,17 +109,6 @@ public class CowGame extends GUI implements GameInterface {
         double Car1Height = 220;
         image("/Car1.png", Car1X, Car1Y, Car1Width, Car1Height, random1 == 0);
 
-        double ClockX = 1300 - (C % (1400 / Speed1)) * Speed1;
-        double ClockY = 200;
-        double ClockWidth = 70;
-        double ClockHeight = 380;
-        image("/Clock.png", ClockX, ClockY, ClockWidth, ClockHeight, random1 == 1);
-
-        double FistX = 1300 - (C % (1400 / Speed1)) * Speed1;
-        double FistY = 400 + Math.sin((C / 5) % 1300) * 80;
-        double FistWidth = 100;
-        double FistHeight = 120;
-        image("/Fist.png", FistX, FistY, FistWidth, FistHeight, random1 == 2);
 
         double RaketRobotX = 1300 - (C % (1400 / Speed2)) * Speed2;
         double RaketRobotY = 500;
@@ -144,7 +135,7 @@ public class CowGame extends GUI implements GameInterface {
         image("/Car2.png", Car2X, Car2Y, Car2Width, Car2Height, random2 == 2);
 
 
-        double ExplosionFrameChange = Math.ceil((C % 24 + 1) / 2) * ((Car1X < 0 || Car2X < 0 || FistX < 0) ? 1 : 0);
+        double ExplosionFrameChange = Math.ceil((C % 24 + 1) / 2) * ((Car1X < 0 || Car2X < 0) ? 1 : 0);
         double ExplosionX = -150;
         double ExplosionY = 340;
         double ExplosionWidth = 400;
@@ -183,10 +174,10 @@ public class CowGame extends GUI implements GameInterface {
 
 
         Random ran1 = new Random();
-        double nextProp1X = random1 == 0 ? Car1X : random1 == 1 ? ClockX : random1 == 2 ? FistX : 0;
-        double nextProp1Y = random1 == 0 ? Car1Y : random1 == 1 ? ClockY : random1 == 2 ? FistY : 0;
-        double nextProp1Width = random1 == 0 ? Car1Width : random1 == 1 ? ClockWidth : random1 == 2 ? FistWidth : 0;
-        double nextProp1Height = random1 == 0 ? Car1Height : random1 == 1 ? ClockHeight : random1 == 2 ? FistHeight : 0;
+        double nextProp1X = random1 == 0 ? Car1X : 0;
+        double nextProp1Y = random1 == 0 ? Car1Y : 0;
+        double nextProp1Width = random1 == 0 ? Car1Width : 0;
+        double nextProp1Height = random1 == 0 ? Car1Height : 0;
         random1 = nextProp1X < 0 ? ran1.nextInt(3) : random1;
 
         Random ran2 = new Random();

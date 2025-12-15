@@ -20,6 +20,9 @@ public class SlaggyBird extends Props {
 
     /// /////////////////////////////////////////////////////////////////////////////////////
 
+    double WIDTH;
+    double HEIGHT;
+
     int random1;
     int random2;
     int random3;
@@ -45,7 +48,7 @@ public class SlaggyBird extends Props {
 
         //Character
         double change = clickW(1, 8);
-        double birdY = 300 - clickW(8, 100, false);
+        double birdY = 300 - clickW(10, 120, false);
         ImageView birdBody = image("/SlaggyBirdPictures/BirdBody" + (1 + (int) change) + ".png", 108, birdY+7, 31.5, 31.5);
         image("/SlaggyBirdPictures/Bird" + (1 + (int) change) + ".png", 100, birdY, 50, 50);
 

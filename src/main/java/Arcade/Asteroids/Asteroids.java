@@ -1,7 +1,6 @@
 package Arcade.Asteroids;
 
 import Arcade.Menu;
-import Arcade.GUI;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +17,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import java.util.*;
 
-public class Asteroids extends GUI {
+public class Asteroids {
     AnimationTimer gameLoop;
     public static int width = 600;
     public static int height = 400;
@@ -33,9 +32,6 @@ public class Asteroids extends GUI {
     List<AsteroidRock> asteroids = new ArrayList<>();
     List<Projectile> projectiles = new ArrayList<>();
 
-    public Asteroids(Pane layout) {
-        super(layout);
-    }
 
     public Scene createGame () {
         text[0].setFont(Font.font("Arial", FontWeight.BOLD, 18));
@@ -61,24 +57,32 @@ public class Asteroids extends GUI {
         VBox root = new VBox(15);
         root.setPadding(new Insets(10));
         root.setAlignment(Pos.TOP_CENTER);
+
         Text title = new Text("Asteroids");
         title.setFill(Color.YELLOW);
         title.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+
         StackPane paneWrapper = new StackPane(pane);
         paneWrapper.setPadding((new Insets(0,10,0,10)));
         pane.setMinSize(width, height);
         pane.setPrefSize(width, height);
         pane.setMaxSize(width, height);
         pane.setStyle("-fx-background-color: white;");
+
         VBox.setVgrow(pane, Priority.NEVER);
+
         Button restart = new Button("Restart");
         Button backToMenu = new Button("Back To Menu");
         restart.setOnAction(e -> restart(pane));
         backToMenu.setOnAction(e -> Menu.backToMenu(backToMenu, gameLoop));
+
         root.getChildren().addAll(title,pane, instructions, restart, backToMenu);
+
         Scene scene = new Scene(root);
+
         pane.requestFocus();
         pane.setOnMouseClicked(e -> pane.requestFocus());
+
         try {
             scene.getStylesheets().add(getClass().getResource("/applicationNEW.css").toExternalForm());
         } catch (Exception e) {
