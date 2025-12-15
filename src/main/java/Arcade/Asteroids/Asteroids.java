@@ -26,6 +26,8 @@ public class Asteroids extends GUI {
     private final long shootCD = 500;
     Pane pane = new Pane();
     Text[] text = {new Text(10, 20, "Points: 0")};
+    Text instructions = new Text((double) width /2, 20, "Move: W/A/S/D - Shoot: SPACE");
+    Text gameOver = new Text(235, (double) height /2, "Game Over");
     Ship ship = new Ship(width/2,height/2);
     final int[] points = {0};
     List<AsteroidRock> asteroids = new ArrayList<>();
@@ -36,8 +38,11 @@ public class Asteroids extends GUI {
     }
 
     public Scene createGame () {
-
-
+        text[0].setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        instructions.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        instructions.setFill(Color.WHITE);
+        gameOver.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        gameOver.setFill(Color.ORANGE);
         pane.getChildren().add(text[0]);
         pane.setPrefSize(width,height);
 
@@ -70,7 +75,7 @@ public class Asteroids extends GUI {
         Button backToMenu = new Button("Back To Menu");
         restart.setOnAction(e -> restart(pane));
         backToMenu.setOnAction(e -> Menu.backToMenu(backToMenu, gameLoop));
-        root.getChildren().addAll(title,pane, restart, backToMenu);
+        root.getChildren().addAll(title,pane, instructions, restart, backToMenu);
         Scene scene = new Scene(root);
         pane.requestFocus();
         pane.setOnMouseClicked(e -> pane.requestFocus());
@@ -95,8 +100,10 @@ public class Asteroids extends GUI {
             if (e.getCode() == KeyCode.R) {
                 restart(pane);
             }
+            if (e.getCode() == KeyCode.ESCAPE){
+                Menu.backToMenu(backToMenu, gameLoop);
+            }
         });
-
 
         gameLoop = new AnimationTimer(){
 
@@ -126,9 +133,7 @@ public class Asteroids extends GUI {
                     projectile.setMovement(projectile.getMovement().normalize().multiply(3));
                     pane.getChildren().add(projectile.getCharacter());
                 }
-                if (pressedKeys.getOrDefault(KeyCode.ESCAPE, false)){
-                    Menu.backToMenu(backToMenu, gameLoop);
-                }
+
                 ship.move();
                 // interesting method
                 asteroids.forEach(Character::move);
@@ -155,14 +160,15 @@ public class Asteroids extends GUI {
                 while(asteroidIter.hasNext()){
                     AsteroidRock a = asteroidIter.next();
                     if (!a.isAlive()){
-                        text[0].setText("Points: " + ++points[0]);
                         pane.getChildren().remove(a.getCharacter());
                         asteroidIter.remove();
+                        text[0].setText("Points: " + ++points[0]);
                     }
                 }
 
                 asteroids.forEach(asteroid ->{
                     if (ship.collide(asteroid)) {
+                        pane.getChildren().add(gameOver);
                         stop();
                     }
                 });
