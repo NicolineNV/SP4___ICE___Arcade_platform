@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 public class GUI {
 
     Pane layout;
+
     GUI(Pane layout){
         this.layout = layout;
     }
@@ -36,22 +37,4 @@ public class GUI {
             layout.getChildren().add(view);
     }
 
-    public void rectangle(Color color, double X, double Y, double Width, double Height){
-        Rectangle rect = new Rectangle();
-        rect.setFill(color);
-        rect.setX(X);
-        rect.setY(Y);
-        rect.setWidth(Width);
-        rect.setHeight(Height);
-        layout.getChildren().add(rect);
-    }
-
-    public void circle(Color color, double X, double Y, double Radius){
-        Circle circ = new Circle();
-        circ.setFill(color);
-        circ.setCenterX(X);
-        circ.setCenterY(Y);
-        circ.setRadius(Radius);
-        layout.getChildren().add(circ);
-    }
 }

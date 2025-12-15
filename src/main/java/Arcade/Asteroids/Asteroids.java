@@ -19,17 +19,17 @@ import javafx.scene.text.Text;
 import java.util.*;
 
 public class Asteroids {
-    AnimationTimer gameLoop;
+    private AnimationTimer gameLoop;
     public static int width = 600;
     public static int height = 400;
     private long lastShotTime = 0;
     private final long shootCD = 500;
     Pane pane = new Pane();
-    Text[] text = {new Text(10, 20, "Points: 0")};
-    Ship ship = new Ship(width/2,height/2);
-    final int[] points = {0};
-    List<AsteroidRock> asteroids = new ArrayList<>();
-    List<Projectile> projectiles = new ArrayList<>();
+    private Text[] text = {new Text(10, 20, "Points: 0")};
+    private Ship ship = new Ship(width/2,height/2);
+    private final int[] points = {0};
+    private List <AsteroidRock> asteroids = new ArrayList<>();
+    private List <Projectile> projectiles = new ArrayList<>();
 
     /*public Asteroids(Pane layout) {
         super(layout);

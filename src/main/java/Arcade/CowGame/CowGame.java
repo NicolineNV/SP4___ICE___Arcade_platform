@@ -22,7 +22,7 @@ public class CowGame extends GUI implements GameInterface {
     double gW;
     double gS;
     double gA;
-    double gD;
+
 
     public void runClickedW() {
         W = motion.clickW();
@@ -42,9 +42,8 @@ public class CowGame extends GUI implements GameInterface {
 
     public void gravity() {
         gW = motion.gravityW("");
-        gS = motion.gravityS("");
-        gA = motion.gravityA("");
-        gD = motion.gravityD("");
+        gS = motion.gravityW("");
+        gA = motion.gravityW("");
     }
 
     public void runConstant() {
@@ -143,6 +142,7 @@ public class CowGame extends GUI implements GameInterface {
         double Car2Width = 220;
         double Car2Height = 140;
         image("/Car2.png", Car2X, Car2Y, Car2Width, Car2Height, random2 == 2);
+
 
         double ExplosionFrameChange = Math.ceil((C % 24 + 1) / 2) * ((Car1X < 0 || Car2X < 0 || FistX < 0) ? 1 : 0);
         double ExplosionX = -150;

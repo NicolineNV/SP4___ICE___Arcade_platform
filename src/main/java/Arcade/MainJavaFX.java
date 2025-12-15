@@ -1,6 +1,7 @@
 package Arcade;
 
 import Arcade.Asteroids.Asteroids;
+import Arcade.SlaggyBird.SlaggyBirdGame;
 import Arcade.Snake.Snake;
 import Arcade.CowGame.Cow;
 import javafx.application.Application;
@@ -29,6 +30,7 @@ public class MainJavaFX extends Application {
         Scene scene = new Scene(layout,width,height);
         Asteroids asteroids = new Asteroids();
         Cow cowGame = new Cow();
+        SlaggyBirdGame slaggyBird = new SlaggyBirdGame();
 
         // Activates CSS file
         try {
@@ -78,6 +80,13 @@ public class MainJavaFX extends Application {
         birdBth.setLayoutY(y);
         birdBth.getStyleClass().add("bird-button");
         layout.getChildren().add(birdBth);
+
+        birdBth.setOnAction(e -> {
+            Scene gameScene = slaggyBird.createGame(stage);
+            if (gameScene != null){
+                stage.setScene(gameScene);
+            }
+        });
 
 
         Button astroidsBtn = new Button("");

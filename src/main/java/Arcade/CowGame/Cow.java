@@ -24,7 +24,7 @@ public class Cow extends Application {
         scene2.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
 
         //Methods-calls to send information to the methods.
-        keyListenener(scene2, motion, game);
+        keyListener(scene2, motion, game);
         timeCounter(game);
 
         //Display.
@@ -53,7 +53,7 @@ public class Cow extends Application {
 
     }
 
-    public void keyListenener(Scene scene, Movements motion, GameInterface game) {
+    public void keyListener(Scene scene, Movements motion, GameInterface game) {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case W:
@@ -64,19 +64,18 @@ public class Cow extends Application {
                     break;
                 case S:
                     motion.clickS();
-                    motion.gravityS("S");
+                    motion.gravityW("S");
                     game.runConstant();
                     game.runClickedS();
                     break;
                 case A:
                     motion.clickA();
-                    motion.gravityA("A");
+                    motion.gravityW("A");
                     game.runConstant();
                     game.runClickedA();
                     break;
                 case D:
                     motion.clickD();
-                    motion.gravityD("D");
                     game.runConstant();
                     game.runClickedD();
                     break;

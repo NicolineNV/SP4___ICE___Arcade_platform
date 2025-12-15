@@ -1,18 +1,12 @@
 package Arcade.DinoGame;
 
 //import Arcade.GUI;
-import Arcade.GUIInterface;
 import javafx.animation.AnimationTimer;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-
-
-import java.util.ArrayList;
 
 public class DinoGame {
 

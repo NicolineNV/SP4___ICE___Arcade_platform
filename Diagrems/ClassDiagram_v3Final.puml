@@ -1,0 +1,269 @@
+@startuml
+!pragma layout smetana
+
+package Arcade {
+    class Main {
+        + main (String[] args)
+    }
+
+    class Login {
+        - String name
+        - VBox layout
+        - Scene scene
+        + start (Stage stage)
+        - handleLogin (TextField nameField, Label responseLabel, Stage stage)
+        + pauseToMenu (Stage stage)
+    }
+
+    class MainJavaFX {
+        + start (Stage stage)
+    }
+
+    class Menu {
+        + backToMenu (Button menuBtn, AnimationTimer gameLoop)
+    }
+
+
+    package Snake {
+        class Snake {
+            - Image *
+            - List ~Corner~ snake
+            - Label scoreLabel
+            - int speed
+            - int score
+            - int relations
+            - int width
+            - int height
+            - Dir direction
+            - int foodX
+            - int foodY
+            - Random random
+            - int foodColor
+            - boolean gameOver
+            - AnimationTimer gameLoop
+            - boolean isGameStarted
+            + Scene createGame()
+            + newFood ()
+            + tick (GraphicsContext gc)
+
+        }
+        enum Dir {
+            left, right, up, down
+        }
+        class Corner {
+           # int x
+           # int y
+           + Corner(int x, int y)
+        }
+
+        MainJavaFX --> Snake
+
+        Snake --> Menu
+
+        Snake --> Dir
+        Snake --> Corner
+
+    }
+
+    package Asteroids {
+        class Asteroids {
+            - AnimationTimer gameLoop
+            + int width
+            + int height
+            - long LastShotTime
+            - final long shootCD
+            - Pane pane
+            - Text [] text
+            - Ship ship
+            - final int [] points
+            - List <AsteroidRock> asteroids
+            - List <Projectile> projectiles
+            + createGame() Scene
+            - restart (Pane pane)
+        }
+        class AsteroidRock {
+            - double rotationMovement
+            + AsteroidRock (int x, int y)
+            + void move()
+        }
+        class Character {
+            - Polygon character;
+            - Point2D movement;
+            - boolean alive;
+            + Character (Polygon polygon, int x, int y)
+            + Polygon getCharacter()
+            + void turnLeft()
+            + void turnRight ()
+            + void move ()
+            + void accelerate ()
+            + void slowingDown ()
+            + boolean collide (Character other)
+            + Point2D getMovement ()
+            + void setMovement (Point2D movement)
+            + boolean isAlive ()
+            + void setAlive (boolean alive)
+
+        }
+        class Projectile {
+            + Projectile (int x, int y)
+        }
+        class Ship {
+            + Ship (int x, int y)
+        }
+
+        MainJavaFX --> Asteroids
+
+        Asteroids --> Menu
+
+        Asteroids --> AsteroidRock
+        Asteroids --> Ship
+        Asteroids --> Projectile
+
+        Character --|> AsteroidRock
+        Character --|> Ship
+        Character --|> Projectile
+    }
+
+    package CowGame {
+        class Cow {
+            + void start (Stage stage)
+            + Scene createGame (Stage stage)
+            + void timeCounter (GameInterface game)
+            + void keyListener (Scene scene, Movements motion, GameInterface game)
+        }
+        class CowGame {
+            - boolean gameOver
+            + boolean isGameOver ()
+              int random1;
+              int random2;
+              double W
+              double S
+              double A
+              double D
+              double C
+              double gW
+              double gS
+              double gA
+              double gD
+             + void runClickedW ()
+             + void runClickedS ()
+             + void runClickedA ()
+             + void runClickedD ()
+             + void gravity ()
+             + void runConstant ()
+             + CowGame (Pane layout, Movements motion)
+             + void runGame ()
+             + void createGame ()
+
+
+        }
+        interface GameInterface {
+            + void runClickedW ();
+            + void runClickedS ();
+            + void runClickedA ();
+            + void runClickedD ();
+            + void gravity ();
+            + void runConstant ();
+            + void runGame ();
+            + void createGame ();
+            + boolean isGameOver ();
+        }
+        class GUI {
+            + Pane layout
+            + void text (String text,String Style,Color color, double x, double y, boolean Display)
+            + void image (String image, double x, double y, double Width, double Height, boolean Display)
+        }
+        class Movements {
+            double clickW
+            double clickS
+            double clickA
+            double clickD
+            double gravW
+            double gravS
+            double gravA
+            double gravD
+            double slideCounter
+            + double clickW ()
+            + double clickS ()
+            + double clickA ()
+            + double clickD ()
+            + double gravityW (String picked)
+            + double gravityS (String picked)
+            + double gravityA (String picked)
+            + double gravityD (String picked)
+            + double constantMotion ()
+
+        }
+
+
+        MainJavaFX --> Cow
+
+        Cow --> Menu
+
+        CowGame --|> GUI
+        CowGame ..|> GameInterface
+        CowGame --> Movements
+
+    }
+
+    package SlaggyBird {
+        class SlaggyBirdGame {
+            + Scene createGame(Stage stage)
+            + void display(Stage stage)
+            + void timeCounter(SlaggyBird game)
+            + void keyListenener(Scene scene)
+
+        }
+
+        class Movements {
+            - public  String clicked
+            double count
+            + double constantAdd (double keepsAdding)
+            + static double addAtW, keepsAddingW, stopsAtW
+            + static boolean coolDownW
+            + static double airTimeW, turningPointw, jumpW, jW, gravity
+            + static double clickW(double airTime, double turningPoint, boolean coolDown)
+
+        }
+        class Props {
+            Pane layout
+            Props(Pane layout)
+            + Text text(String text,String Style,Color color, double x, double y)
+            + ImageView image(String image, double x, double y, double Width, double Height)
+
+        }
+        class SlaggyBird {
+            - boolean gameOver
+            int random1
+            int random2
+            int random3
+            int random4
+            int random5
+            int AA
+            int BB
+            int CC
+            int DD
+            int EE
+            + boolean isGameOver()
+            + SlaggyBird(Pane layout)
+            + void runGame()
+        }
+
+        MainJavaFX --> SlaggyBirdGame
+
+        SlaggyBirdGame --> Menu
+
+        Props --|> SlaggyBird
+
+        Movements --|> Props
+
+        SlaggyBirdGame --> Movements
+    }
+
+    Main --> Login
+
+    Login --> MainJavaFX
+
+}
+
+@enduml
