@@ -1,7 +1,7 @@
 package Arcade.Asteroids;
 
 import Arcade.Menu;
-//import Arcade.GUI;
+import Arcade.GUI;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,26 +18,31 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import java.util.*;
 
-public class Asteroids {
-    private AnimationTimer gameLoop;
+public class Asteroids extends GUI {
+    AnimationTimer gameLoop;
     public static int width = 600;
     public static int height = 400;
     private long lastShotTime = 0;
     private final long shootCD = 500;
     Pane pane = new Pane();
-    private Text[] text = {new Text(10, 20, "Points: 0")};
-    private Ship ship = new Ship(width/2,height/2);
-    private final int[] points = {0};
-    private List <AsteroidRock> asteroids = new ArrayList<>();
-    private List <Projectile> projectiles = new ArrayList<>();
+    Text[] text = {new Text(10, 20, "Points: 0")};
+    Text instructions = new Text((double) width /2, 20, "Move: W/A/S/D - Shoot: SPACE");
+    Text gameOver = new Text(235, (double) height /2, "Game Over");
+    Ship ship = new Ship(width/2,height/2);
+    final int[] points = {0};
+    List<AsteroidRock> asteroids = new ArrayList<>();
+    List<Projectile> projectiles = new ArrayList<>();
 
-    /*public Asteroids(Pane layout) {
+    public Asteroids(Pane layout) {
         super(layout);
-    }*/
+    }
 
     public Scene createGame () {
-
-
+        text[0].setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        instructions.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        instructions.setFill(Color.WHITE);
+        gameOver.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        gameOver.setFill(Color.ORANGE);
         pane.getChildren().add(text[0]);
         pane.setPrefSize(width,height);
 
@@ -70,7 +75,7 @@ public class Asteroids {
         Button backToMenu = new Button("Back To Menu");
         restart.setOnAction(e -> restart(pane));
         backToMenu.setOnAction(e -> Menu.backToMenu(backToMenu, gameLoop));
-        root.getChildren().addAll(title,pane, restart, backToMenu);
+        root.getChildren().addAll(title,pane, instructions, restart, backToMenu);
         Scene scene = new Scene(root);
         pane.requestFocus();
         pane.setOnMouseClicked(e -> pane.requestFocus());
@@ -95,8 +100,10 @@ public class Asteroids {
             if (e.getCode() == KeyCode.R) {
                 restart(pane);
             }
+            if (e.getCode() == KeyCode.ESCAPE){
+                Menu.backToMenu(backToMenu, gameLoop);
+            }
         });
-
 
         gameLoop = new AnimationTimer(){
 
@@ -126,9 +133,7 @@ public class Asteroids {
                     projectile.setMovement(projectile.getMovement().normalize().multiply(3));
                     pane.getChildren().add(projectile.getCharacter());
                 }
-                if (pressedKeys.getOrDefault(KeyCode.ESCAPE, false)){
-                    Menu.backToMenu(backToMenu, gameLoop);
-                }
+
                 ship.move();
                 // interesting method
                 asteroids.forEach(Character::move);
@@ -155,14 +160,15 @@ public class Asteroids {
                 while(asteroidIter.hasNext()){
                     AsteroidRock a = asteroidIter.next();
                     if (!a.isAlive()){
-                        text[0].setText("Points: " + ++points[0]);
                         pane.getChildren().remove(a.getCharacter());
                         asteroidIter.remove();
+                        text[0].setText("Points: " + ++points[0]);
                     }
                 }
 
                 asteroids.forEach(asteroid ->{
                     if (ship.collide(asteroid)) {
+                        pane.getChildren().add(gameOver);
                         stop();
                     }
                 });
