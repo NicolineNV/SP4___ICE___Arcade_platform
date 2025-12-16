@@ -3,6 +3,9 @@ package Arcade.SlaggyBird;
 public class Movements {
     public static String clicked;
 
+
+
+
     /// //////////////////////////
     /// CONSTANT COUNT MOTION ///
     /// ////////////////////////
@@ -11,6 +14,8 @@ public class Movements {
     public double constantAdd(double keepsAdding) {
         count += keepsAdding;
         return count;
+
+
     }
 
     /// ///////////////////

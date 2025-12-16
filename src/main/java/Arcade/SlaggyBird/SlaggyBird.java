@@ -19,6 +19,7 @@ public class SlaggyBird extends Props {
 
     public SlaggyBird(Pane layout) {
         super(layout);
+
     }
 
     public void runGame() {

@@ -9,13 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Cow extends Application {
-
-
-    public void start(Stage stage){
-        createGame(stage);
-    }
-
+public class Cow {
 
     public Scene createGame(Stage stage) {
         Pane layout = new Pane();

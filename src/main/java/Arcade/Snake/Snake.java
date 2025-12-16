@@ -163,24 +163,24 @@ public class Snake {
 
 
             scene.setOnKeyReleased(key -> {
+                if (key.getCode() == KeyCode.ESCAPE){
+                    isGameStarted = false;
+                    gameOver = false;
+                    Menu.backToMenu(menuBtn, gameLoop);
+                }
+            });
+
+            //Control
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, key->{
+
                 // Starts the game by pressing ENTER
                 if (key.getCode() == KeyCode.ENTER && !isGameStarted){
                     isGameStarted = true;
                     startLabel.setVisible(false); // hides startlabel
                     return;
                 }
-                if (key.getCode() == KeyCode.ESCAPE){
-                    isGameStarted = false;
-                    gameOver = false;
-                    Menu.backToMenu(menuBtn, gameLoop);
-                }
-
                 if (!isGameStarted) return;
                 // Makes sure the rest of the controls doesn't work if the game is not started
-            });
-
-            //Control
-            scene.addEventFilter(KeyEvent.KEY_PRESSED, key->{
 
                 if (key.getCode() == KeyCode.W){
                     direction = Dir.up;

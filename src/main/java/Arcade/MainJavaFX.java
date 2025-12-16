@@ -12,8 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainJavaFX extends Application {
 
