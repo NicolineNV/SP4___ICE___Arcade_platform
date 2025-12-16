@@ -7,9 +7,13 @@ import Arcade.CowGame.Cow;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainJavaFX extends Application {
 
@@ -25,7 +29,6 @@ public class MainJavaFX extends Application {
         int spaceX = 300;
         int spaceY = 250;
 
-        //GUI gui = new GUI(layout);
         Snake snake = new Snake();
         Scene scene = new Scene(layout,width,height);
         Asteroids asteroids = new Asteroids();
@@ -61,10 +64,10 @@ public class MainJavaFX extends Application {
         });
 
 
-        Button cowBtn = new Button("✨ DAVID THE DINO! ✨");
+        Button cowBtn = new Button(" ");
         cowBtn.setLayoutX(x+spaceX);
         cowBtn.setLayoutY(y);
-        cowBtn.getStyleClass().add("dino-button");
+        cowBtn.getStyleClass().add("cow-button");
         layout.getChildren().add(cowBtn);
 
         cowBtn.setOnAction(e -> {
@@ -75,7 +78,7 @@ public class MainJavaFX extends Application {
         });
 
 
-        Button birdBth = new Button("✨ BARNY THE BIRD! ✨");
+        Button birdBth = new Button("");
         birdBth.setLayoutX((x+spaceX)+spaceX);
         birdBth.setLayoutY(y);
         birdBth.getStyleClass().add("bird-button");
@@ -106,5 +109,12 @@ public class MainJavaFX extends Application {
         stage.setScene(scene);
         stage.show();
 
+        scene.setOnKeyReleased(e -> {
+            if (e.getCode() == KeyCode.ESCAPE){
+                stage.close();
+            }
+        });
+
     }
+
 }

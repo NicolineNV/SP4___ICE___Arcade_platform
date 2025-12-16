@@ -1,8 +1,8 @@
 package Arcade.Snake;
-//import Arcade.GUI;
+
 import Arcade.Menu;
 import javafx.animation.AnimationTimer;
-        import javafx.geometry.Pos;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,13 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-        import javafx.scene.layout.VBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-        import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Snake {
 
@@ -33,7 +31,7 @@ public class Snake {
 
     static Label scoreLabel;
 
-    private static int speed = 5;
+    private static int speed = 3;
     private static int score = 0;
     private static int relations = 25; // How many pixels each object is
     private static int width = 20;
@@ -42,7 +40,7 @@ public class Snake {
     private static int foodX = 0;
     private static int foodY = 0;
     private static Random random = new Random();
-    private static int foodColor = 0; // Set foodColor to black - it needs to be random
+    private static int foodColor = 0;
 
     private static boolean gameOver = false;
 
@@ -50,11 +48,6 @@ public class Snake {
 
     private static boolean isGameStarted = false;
 
-
-    /*//Pane layout;
-    public Snake(Pane layout){
-        super(layout);
-    }*/
 
     public Scene createGame (){
 
@@ -93,7 +86,7 @@ public class Snake {
             restartBtn.setOnAction(e -> {
                 gameOver = false;
                 isGameStarted = false;
-                speed = 5;
+                speed = 3;
                 score = 0;
                 snake.clear();
                 snake.add(new Corner(width/2, height/2));
@@ -168,9 +161,8 @@ public class Snake {
                 System.out.println("CSS file not found - runs without styling");
             }
 
-            //Control
-            scene.addEventFilter(KeyEvent.KEY_PRESSED, key->{
 
+            scene.setOnKeyReleased(key -> {
                 // Starts the game by pressing ENTER
                 if (key.getCode() == KeyCode.ENTER && !isGameStarted){
                     isGameStarted = true;
@@ -185,6 +177,10 @@ public class Snake {
 
                 if (!isGameStarted) return;
                 // Makes sure the rest of the controls doesn't work if the game is not started
+            });
+
+            //Control
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, key->{
 
                 if (key.getCode() == KeyCode.W){
                     direction = Dir.up;
@@ -201,7 +197,7 @@ public class Snake {
                 // Tilføj R for restart
                 if (key.getCode() == KeyCode.R && gameOver){
                     gameOver = false;
-                    speed = 5;
+                    speed = 3;
                     score = 0;
                     snake.clear();
                     snake.add(new Corner(width/2, height/2));
@@ -229,10 +225,7 @@ public class Snake {
         }
     }
 
-
-
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static void newFood () {
         start: while (true) {
@@ -253,8 +246,7 @@ public class Snake {
 
     }
 
-
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Tick
     public static void tick (GraphicsContext gc) {
@@ -352,25 +344,19 @@ public class Snake {
                     photoSize,
                     photoSize);
         }
-        ////////////////////////////////////////////////////////////////////
 
-        // TODO ændre navne!
         // Snake
-
         double bobSize = relations * 2;
         double bobOffsetX = (relations - bobSize) / 2;
         double bobOffsetY = (relations - bobSize) / 2;
 
         for (int i = 0; i < snake.size(); i++) {
             Corner c = snake.get(i);
-            Image bob = (i == 0) ? bobTheSnake : bobTheSnakeBody; // Første segment = hoved
+            Image bob = (i == 0) ? bobTheSnake : bobTheSnakeBody; // The head
 
             if (bob != null) {
                 gc.drawImage(bob, (c.x * relations) + bobOffsetX, (c.y * relations) + bobOffsetY, bobSize, bobSize);
             }
         }
     }
-
 }
-
-

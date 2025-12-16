@@ -1,9 +1,11 @@
 package Arcade.CowGame;
 
-//import Arcade.GUI;
+import Arcade.MainJavaFX;
+import Arcade.Menu;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -21,7 +23,7 @@ public class Cow extends Application {
         GameInterface game = new CowGame(layout, motion);
 
         Scene scene2 = new Scene(layout, 1300, 800);
-        scene2.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+        scene2.getStylesheets().add(getClass().getResource("/applicationNEW.css").toExternalForm());
 
         //Methods-calls to send information to the methods.
         keyListenener(scene2, motion, game);
@@ -30,7 +32,21 @@ public class Cow extends Application {
         //Display.
         stage.setScene(scene2);
         stage.show();
+
+        scene2.setOnKeyReleased(e -> {
+            if (e.getCode() == KeyCode.ESCAPE){
+                stage.close();
+                MainJavaFX menu = new MainJavaFX();
+                menu.start(stage);
+            }
+            if (e.getCode() == KeyCode.R){
+                stage.close();
+                createGame(stage);
+            }
+        });
+
         return scene2;
+
     }
 
 
@@ -80,7 +96,7 @@ public class Cow extends Application {
                     game.runConstant();
                     game.runClickedD();
                     break;
-                default:
+                 default:
                     break;
             }
         });

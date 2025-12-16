@@ -1,9 +1,7 @@
 package Arcade;
 
-import Arcade.Asteroids.Asteroids;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Menu {

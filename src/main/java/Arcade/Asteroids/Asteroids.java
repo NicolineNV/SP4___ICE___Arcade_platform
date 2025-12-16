@@ -89,11 +89,6 @@ public class Asteroids {
             System.out.println("CSS file not found - runs without styling");
         }
 
-        // Scene scene = new Scene(pane);
-
-        // stage.setTitle("Asteroids");
-        //stage.setScene(scene);
-        //stage.show();
 
         Map<KeyCode, Boolean> pressedKeys = new HashMap<>();
         scene.setOnKeyPressed(e -> {

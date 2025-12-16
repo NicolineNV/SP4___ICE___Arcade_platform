@@ -74,6 +74,8 @@ package Arcade {
             - final long shootCD
             - Pane pane
             - Text [] text
+            - Text instructions
+            - Text gameOver
             - Ship ship
             - final int [] points
             - List <AsteroidRock> asteroids

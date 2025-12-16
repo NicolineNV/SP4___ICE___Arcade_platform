@@ -1,24 +1,24 @@
 /* Arcade Platform CSS - Modern Gaming Look */
 
-/* Root styling - baggrund gradient */
+/* Root styling - background gradient */
 .root {
     -fx-background-color: linear-gradient(to bottom, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
-/* Universal container styling - virker med alle layouts */
+/* Universal container styling */
 .game-container {
     -fx-background-color: transparent;
     -fx-padding: 20;
 }
 
-/* Alternativ container med spacing (til VBox, HBox osv.) */
+/* Alternativ container with spacing (to VBox, HBox, and so on) */
 .game-container-spaced {
     -fx-background-color: transparent;
     -fx-padding: 20;
     -fx-spacing: 20;
 }
 
-/* Hovedtitel styling */
+/* Main title styling */
 .title-label {
     -fx-font-family: "Impact", "Arial Black", sans-serif;
     -fx-font-size: 48px;
@@ -38,7 +38,7 @@
     -fx-padding: 5;
 }
 
-/* Canvas styling - spillets område */
+/* Canvas styling - games area */
 .canvas {
     -fx-border-color: rgba(0, 245, 255, 0.6);
     -fx-border-width: 4;
@@ -46,7 +46,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 245, 255, 0.4), 25, 0.7, 0, 0);
 }
 
-/* Primære knapper - Restart, Start osv. */
+/* Primary buttons */
 .button {
     -fx-background-color: linear-gradient(to bottom, #00d9ff 0%, #0088ff 100%);
     -fx-text-fill: white;
@@ -77,7 +77,7 @@
 
 
 
-/* Menu knapper til spilvalg */
+/* Menu buttons for games */
 .game-button {
     -fx-background-color: linear-gradient(to bottom, #ff6b6b 0%, #ee5a6f 100%);
     -fx-text-fill: white;
@@ -105,7 +105,7 @@
     -fx-translate-y: 2;
 }
 
-/* Sekundære knapper - tilbage til menu */
+/* Secondary buttons - back to menu */
 .secondary-button {
     -fx-background-color: linear-gradient(to bottom, #a29bfe 0%, #6c5ce7 100%);
     -fx-text-fill: white;
@@ -132,7 +132,7 @@
     -fx-translate-y: 2;
 }
 
-/* Almindelig label tekst */
+/* Normal label text */
 .label {
     -fx-font-family: "Arial", sans-serif;
     -fx-font-size: 18px;
@@ -140,7 +140,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.5, 0, 2);
 }
 
-/* Game Over tekst styling */
+/* Game Over text styling */
 .game-over-label {
     -fx-font-family: "Impact", sans-serif;
     -fx-font-size: 60px;
@@ -170,25 +170,7 @@
     -fx-border-radius: 15;
 }
 
-/* Spil kort i menu */
-.game-card {
-    -fx-background-color: rgba(22, 33, 62, 0.9);
-    -fx-background-radius: 15;
-    -fx-padding: 20;
-    -fx-border-color: rgba(0, 245, 255, 0.3);
-    -fx-border-width: 2;
-    -fx-border-radius: 15;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 20, 0.6, 0, 4);
-}
-
-.game-card:hover {
-    -fx-border-color: rgba(0, 245, 255, 0.6);
-    -fx-scale-x: 1.03;
-    -fx-scale-y: 1.03;
-    -fx-effect: dropshadow(gaussian, rgba(0, 245, 255, 0.5), 25, 0.7, 0, 5);
-}
-
-/* Instruktions tekst */
+/* Instructions text */
 .instructions-label {
     -fx-font-family: "Arial", sans-serif;
     -fx-font-size: 16px;
@@ -197,13 +179,11 @@
     -fx-padding: 10;
 }
 
-/* ========== KNAPPER MED BAGGRUNDSBILLEDER ========== */
+/* ========== BUTTONS WITH BACKGROUNDS PICTURE ========== */
 
-/* Knap med baggrundsbillede - fuld størrelse */
+/* Button with backgrounds picture */
 
-/* Knap med billede OG gradient overlay */
-
-/*rgba(0, 217, 255, 0.5)*/
+/* Button with picture AND gradient overlay */
 
 .astroids-button {
     -fx-background-image: url("/AstroidsPictures/AstroidsIcon2.png");
@@ -239,7 +219,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 136, 255, 0.8), 20, 0.8, 0, 3);
 }
 
-/* Snake spil knap eksempel */
 .snake-button {
     -fx-background-image: url("/SnakePictures/snakeIconVersionWhatever.png");
     -fx-background-color: rgb(62, 116, 1);
@@ -275,8 +254,8 @@
 }
 
 
-.dino-button {
-    -fx-background-image: url("/SnakePictures/slimeGREEN.png");
+.cow-button {
+    -fx-background-image: url("/CowGamePictures/CowGameLogo.png");
     -fx-background-color: linear-gradient(to bottom, #ff6b6b 0%, #ee5a6f 100%);
     -fx-background-size: cover;
     -fx-background-position: center;
@@ -292,18 +271,18 @@
     -fx-font-family: "Arial", sans-serif;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-padding: 90 10 90 10;
+    -fx-padding: 90 135 90 135;
 
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(238, 90, 111, 0.6), 15, 0.7, 0, 3);
 }
-.dino-button:hover {
+.cow-button:hover {
     -fx-background-color: linear-gradient(to bottom, #ff8787 0%, #ff6b9d 100%);
     -fx-scale-x: 1.08;
     -fx-scale-y: 1.08;
     -fx-effect: dropshadow(gaussian, rgba(255, 107, 107, 0.8), 20, 0.8, 0, 3);
 }
-.dino-button:pressed {
+.cow-button:pressed {
     -fx-background-color: linear-gradient(to bottom, #ee5a6f 0%, #c44569 100%);
     -fx-translate-y: 2;
     -fx-effect: dropshadow(gaussian, rgba(255, 107, 107, 0.8), 20, 0.8, 0, 3);
@@ -311,7 +290,7 @@
 
 
 .bird-button {
-    -fx-background-image: url("/SnakePictures/slimeBLUE.png");
+    -fx-background-image: url("/SlaggyBirdPictures/SlaggyBirdLogo.png");
     -fx-background-color: linear-gradient(to bottom, #a29bfe 0%, #6c5ce7 100%);
     -fx-background-size: cover;
     -fx-background-position: center;
@@ -327,7 +306,7 @@
     -fx-font-family: "Arial", sans-serif;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-padding: 90 10 90 10;
+    -fx-padding: 90 135 90 135;
 
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(108, 92, 231, 0.5), 12, 0.6, 0, 2);

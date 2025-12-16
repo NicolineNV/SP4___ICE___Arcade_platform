@@ -71,12 +71,5 @@ public class Login extends Application{
         pause.play();
     }
 
-    /*public void stop (){
-        if (isOpenMainJavaFX == true){
-            System.exit(0);
-        } else {
-            System.out.println("Something went wrong, could not close login");
-        }
-    }*/
 
 }
